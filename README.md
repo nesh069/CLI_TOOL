@@ -10,31 +10,30 @@ A command-line interface application for managing users, projects, and tasks wit
 - **Data Persistence**: All data saved to local JSON files
 - **Search**: Search across users, projects, and tasks
 - **Export**: Export data to CSV format
-- **Pretty Output**: Colored terminal output using `rich` and table formatting with `tabulate`
+- **Pretty Output**: Colored terminal output and tables using `rich`
 
 ## Project Structure
 
 CLI_TOOL/
 ├── main.py              # CLI entry point with argparse
+├── .gitignore
 ├── models/              # OOP class definitions
-│   ├── init.py
+│   ├── __init__.py
 │   ├── person.py        # Base Person class (inheritance)
 │   ├── user.py          # User class (extends Person)
 │   ├── project.py       # Project class
 │   └── task.py          # Task class
 ├── utils/               # Helper functions and persistence
-│   ├── init.py
+│   ├── __init__.py
 │   ├── storage.py       # JSON file I/O manager
-│   └── formatters.py    # Pretty printing with rich/tabulate
+│   └── formatters.py    # Pretty printing with rich
 ├── tests/               # Unit tests
-│   ├── init.py
+│   ├── __init__.py
 │   ├── test_models.py   # Model class tests
 │   ├── test_cli.py      # CLI command tests
-│   └── test_storage.py  # Persistence tests
-├── data/                # JSON data files (auto-created)
-│   ├── users.json
-│   ├── projects.json
-│   └── tasks.json
+│   ├── test_storage.py  # Persistence tests
+│   └── test_formatters.py  # Formatting tests
+├── data/                # JSON data files (auto-created, gitignored)
 └── requirements.txt     # Python dependencies
 
 ---
@@ -161,10 +160,11 @@ pytest tests/
 # Verbose output
 pytest -v tests/
 
-# Run a specific test file
+# Run specific test files
 pytest tests/test_models.py
 pytest tests/test_cli.py
 pytest tests/test_storage.py
+pytest tests/test_formatters.py
 
 # Run with coverage
 pytest --cov=models --cov=utils --cov=main tests/

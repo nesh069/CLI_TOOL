@@ -43,8 +43,9 @@ def get_storage() -> StorageManager:
 def cmd_add_user(args):
     """Handle add-user command."""
     try:
+        storage = get_storage()
         user = User(name=args.name, email=args.email or "")
-        get_storage().save_users()
+        storage.save_users()
         print_success(f"User '{args.name}' created with ID {user.id}")
     except ValueError as e:
         print_error(str(e))

@@ -55,6 +55,7 @@ def cmd_add_user(args):
 
 def cmd_list_users(args):
     """Handle list-users command."""
+    get_storage()
     users = User.get_all_users()
     if not users:
         print_info("No users found.")
@@ -70,7 +71,7 @@ def cmd_list_users(args):
         })
     
     print_header("Users")
-    print(format_table(data))
+    format_table(data)
     return 0
 
 
@@ -151,7 +152,7 @@ def cmd_list_projects(args):
             "status": "OVERDUE" if project.is_overdue() else "Active"
         })
     
-    print(format_table(data))
+    format_table(data)
     return 0
 
 
@@ -254,7 +255,7 @@ def cmd_list_tasks(args):
             "created": task.created_at[:10] if task.created_at else "N/A"
         })
     
-    print(format_table(data))
+    format_table(data)
     return 0
 
 
@@ -425,7 +426,7 @@ def cmd_search(args):
         return 0
     
     print_header(f"Search Results for '{args.query}'")
-    print(format_table(results))
+    format_table(results)
     return 0
 
 
